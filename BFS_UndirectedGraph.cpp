@@ -8,7 +8,7 @@ public:
 
 	void addEdge(int v, int w);
 
-	void DFS(int v);
+	void BFS(int v);
 };
 
 void Graph::addEdge(int v, int w)
@@ -16,7 +16,7 @@ void Graph::addEdge(int v, int w)
 	adj[v].push_back(w);
 }
 
-void Graph::DFS(int v)
+void Graph::BFS(int v)
 {			
 	list<int> queue;
   	queue.push_back(v);
@@ -62,7 +62,7 @@ int main()
 	int startIndex;
 	cin >> startIndex;
 	cout << "Following is Depth First Traversal" << endl;
-	g.DFS(startIndex);
+	g.BFS(startIndex);
 
 	return 0;
 }
