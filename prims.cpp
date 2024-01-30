@@ -19,10 +19,17 @@ int minKey(int key[], bool mstSet[])
 
 int printMST(int parent[], int n, int graph[V][V])
 {
-    cout<<"Edge Weight\n";
-    for (int i = 1; i < V; i++)
+    int totalWeight = 0;
+    cout << "Edge Weight\n";
+    for (int i = 1; i < V; i++) {
         printf("%d - %d %d \n", parent[i], i, graph[i][parent[i]]);
+        totalWeight += graph[i][parent[i]];
+    }
+
+    cout << "Total Weight of MST: " << totalWeight << endl;
+    return totalWeight;
 }
+
 
 void primMST(int graph[V][V])
 {
