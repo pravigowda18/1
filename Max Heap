@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+
+void maxHeapify(int* arr, int n, int i) {
+    int largest = i;
+    int leftChild = 2 * i;
+    int rightChild = 2 * i + 1;
+
+    if (leftChild <= n && arr[leftChild] > arr[largest])
+        largest = leftChild;
+
+    if (rightChild <= n && arr[rightChild] > arr[largest])
+        largest = rightChild;
+
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        maxHeapify(arr, n, largest);
+    }
+}
+
+void heapSort(int* arr, int n) {
+    for (int i = n / 2; i > 0; i--)
+        maxHeapify(arr, n, i);
+
+    for (int i = n; i > 0; i--) {
+        swap(arr[1], arr[i]);
+        maxHeapify(arr, i - 1, 1);
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of elements: ";
+    cin >> n;
+    int numArray[n + 1];
+    numArray[0] = 0;
+
+    cout << "Enter " << n << " elements" << endl;
+    for (int i = 1; i <= n; i++)
+        cin >> numArray[i];
+
+    cout << "Original Array" << endl;
+    for (int i = 1; i <= n; i++)
+        cout << numArray[i] << " ";
+    cout << endl;
+
+    for (int i = n / 2; i > 0; i--)
+        maxHeapify(numArray, n, i);
+
+    cout << "Max heap" << endl;
+    for (int i = 1; i <= n; i++)
+        cout << numArray[i] << " ";
+    cout << endl;
+
+    heapSort(numArray, n);
+
+    cout << "Sorted Array: ";
+    for (int i = 1; i <= n; i++)
+        cout << numArray[i] << " ";
+    cout << endl;
+
+    return 0;
+}
