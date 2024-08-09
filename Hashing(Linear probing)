@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+
+void hashInsert(int *arr, int size, int element) {
+  int n = 0;
+  int position = element % size;
+  while(arr[position] != INT_MIN && n != size) 
+  {
+    position = (position + 1) % size;
+    n++;
+  }
+  if(n != size)
+    arr[position] = element;
+  else 
+    cout << "Table is full. We cannot insert values anymore." << endl;
+}
+
+
+void hashDisplay(int arr[], int size) 
+{
+  cout << "Index\tValue" << endl;
+  for(int i = 0; i < size; i++) 
+  {
+    cout << i << "\t";
+    if(arr[i] == INT_MIN)
+      cout << " " << endl;
+    else
+      cout << arr[i] << endl;
+  }
+}
+
+int main() 
+{
+  int size, choice, element;
+  cout << "Enter the size of hash table :: ";
+  cin >> size;
+
+  int arr[size];
+  for(int i =0; i < size; i++) 
+    arr[i] = INT_MIN;
+  while(1) 
+  {
+    cout << "1. Insert\n2. Display\n3. Exit" << endl;
+    cout << "Enter your choice :: ";
+    cin >> choice;
+    switch(choice) 
+    {
+    case 1:
+      cout << "Enter a value to insert :: ";
+      cin >> element;
+      hashInsert(arr, size, element);
+      break;
+    case 2:
+      hashDisplay(arr, size);
+      break;
+    case 3:
+      exit(0);
+      break;
+    default:
+      cout << "Invalid choice. Please eneter valid choice" << 
+    endl;
+    }
+  }
+}
